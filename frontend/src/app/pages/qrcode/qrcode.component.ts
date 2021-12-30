@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { ShareDataService } from 'src/app/share-data.service';
 import { WebRequestService } from 'src/app/web-request.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-qrcode',
@@ -28,7 +29,7 @@ export class QrcodeComponent implements OnInit {
       }
     )
 
-    this.QRLINK= this.webreqservice.ROOT_URL + "/ressources/"+ this.selectedRessourceId +"/new-task";
+    this.QRLINK= environment.ROOT_URL + "/ressources/"+ this.selectedRessourceId +"/new-task";
   }
 
 }

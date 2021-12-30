@@ -6,7 +6,7 @@ module.exports  =  () => {
         isadmin : true
     }).then(async(user) => {
         if (user) {
-            console.log("admin already exist");
+            //console.log("admin exist");
         } else {
                 const rawResponse = await axios('http://localhost:'+process.env.PORT+'/users', {
                   method: 'POST',

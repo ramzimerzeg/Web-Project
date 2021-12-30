@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  ROOT_URL: "http://localhost:3000"
+  ROOT_URL: "http://localhost",
+  PORT: "3000"
 };
