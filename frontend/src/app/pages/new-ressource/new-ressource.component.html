@@ -1,0 +1,18 @@
+<div class="centered-content">
+    <div class="modal-box">
+      <h1 class="title">
+        Crée une nouvelle ressource
+      </h1>
+  
+      <input #ressourceTitleInput class="input has-background-light is-medium" type="text" placeholder="Entrer nom de la ressource...">
+      <br><br>
+      <input #ressourcelocalisationInput class="input has-background-light is-medium" type="text" placeholder="Entrer localisation de la ressource...">
+      <br><br>
+      <div class="buttons is-right">
+        <button class="button is-medium" routerLink="/ressources">Cancel</button>
+        <button class="button is-primary has-text-white is-medium" (click)="createRessource(ressourceTitleInput.value,ressourcelocalisationInput.value)" >Create</button>
+      </div>
+  
+      
+    </div>
+  </div>

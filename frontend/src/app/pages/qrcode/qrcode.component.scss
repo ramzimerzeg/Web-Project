@@ -1,0 +1,18 @@
+.qrcode-box{
+    min-height: 158.74015748px;
+    max-height: 158.74015748px;
+    width : 100%;
+    max-width: 396.8503937px;
+    min-width: 396.8503937px;
+    background: white;
+    border-radius: 5px;
+}
+
+.top-bar {
+    margin-bottom: 20px;
+    display: flex;
+    .title {
+        flex-grow: 1;
+        margin: 0;
+    }
+}

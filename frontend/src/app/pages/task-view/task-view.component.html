@@ -1,0 +1,106 @@
+<div class="centered-content">
+    <div class="task-manager-container">
+    
+        <div class="sidebar has-background-white">
+            <h1 class="title has-text-primary">
+                Ressources
+            </h1>
+            <div class="scroll">
+              <div class="list-menu">
+                  <a class="list-menu-item" *ngFor="let ressource of ressources" [routerLink]="['/ressources',ressource._id]" routerLinkActive="is-active">
+                      <div>
+                          <p>{{ressource.title}}
+                              <br>
+                          </p>
+                          <p id="localisation">
+                              {{ressource.localisation}}
+                          </p>
+                      </div>
+                      
+                  </a>
+              </div>
+            </div>
+            <br><br>
+            <button  class="button  is-primary has-text-white" routerLink="/new-ressource">+ Ressource</button>
+        </div>
+    
+        <div class="task-list-container has-background-light">
+            <div *ngIf="tasks">
+                <div class="top-bar">
+                    <h1 class="title has-text-primary">
+                        Anomalies
+                    </h1>
+                    <div class="dropdown is-hoverable is-right">
+                        <div class="dropdown-trigger">
+                          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                            <span class="icon is-small">
+                              <i class="fas fa-cog" aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                          <div class="dropdown-content">
+                            <a  [routerLink]="['/ressources', selectedRessourceId, 'qr-code']" class="dropdown-item">
+                              Génerer QR code 
+                            </a>
+                            <a (click)="onModifierRessourceClick()" [routerLink]="['/edit-ressource',selectedRessourceId]" class="dropdown-item">
+                              Modifier la ressource
+                            </a>
+                            <a (click)="onDeleteRessourceClick()" class="dropdown-item has-text-danger">
+                              Supprimer la ressource
+                            </a>
+                            <a (click)="onlogoutClick()" class="dropdown-item has-text-danger">
+                                Déconnexion
+                              </a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll">
+                  <div class="tasks" *ngFor="let task of tasks" (click)="OnTaskClick(task)" [ngClass]="{'completed': task.completed}">
+                      <div class="task-text">
+                          <p>{{task.title}}</p>
+                      </div>
+
+                      <div class="task-buttons">
+
+                          <button (click)="onModifierTaskClick(task)" class="button" [routerLink]="['/ressources', selectedRessourceId, 'edit-task', task._id]"> 
+                            <div class="icon">
+                              <i class="fas fa-edit"></i>
+                            </div>
+                          </button>
+
+                          <button class="button is-danger" (click)="onDeleteTaskClick(task._id)" style="margin-left: 10px;">
+                            <div class="icon">
+                              <i class="fas fa-trash"></i>
+                            </div>
+                          </button>
+              
+                      </div>
+                  </div>
+                </div>
+
+                <h3 class="empty-state-text" *ngIf="tasks.length === 0">Aucune anomalie pour cette ressource</h3>
+    
+                <button routerLink="./new-task" class="circle-add-button button is-primary">
+                    <img src="../../../assets/plus-icon.svg">
+                </button>
+            </div>
+
+            <div *ngIf="!tasks">
+                <div class="top-bar">
+                    <h3 class="empty-state-text">Veuillez sélectionner une ressource</h3>
+
+                        <div class="dropdown-trigger">
+                          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4" (click)="onlogoutClick()">
+                            <span class="icon is-small">
+                              <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </div> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

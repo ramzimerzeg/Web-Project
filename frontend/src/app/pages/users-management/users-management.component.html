@@ -1,0 +1,83 @@
+<div class="centered-content">
+    <div class="task-manager-container">
+    
+        <div class="sidebar has-background-white">
+            <h1 class="title has-text-primary">
+                Responsables
+            </h1>
+            <div class="scroll">
+              <div class="list-menu ">
+                  <a class="list-menu-item" *ngFor="let user of users" (click)="SelectedUser(user)" [routerLink]="['/users-management',user._id]" routerLinkActive="is-active">
+                      <div>
+                          <p>{{user.username}}
+                              <br>
+                          </p>
+                      </div>
+                  </a>
+              </div>
+            </div>
+
+            <button class="button is-primary has-text-white" routerLink="/createUser">+ Responsable</button>
+        </div>
+    
+        <div class="task-list-container has-background-light">
+            
+            <div *ngIf="Selecteduser">
+
+                <div class="top-bar">
+                    <h1 class="title has-text-primary">
+                        Infomation
+                    </h1>
+                    <div class="dropdown is-hoverable is-right">
+                        <div class="dropdown-trigger">
+                          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                            <span class="icon is-small">
+                              <i class="fas fa-cog" aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                          <div class="dropdown-content">
+                            <a (click)="onDeleteUserClick(Selecteduser._id)" class="dropdown-item has-text-danger">
+                              Supprimer l'utilisateur
+                            </a>
+                            <a (click)="onlogoutClick()" class="dropdown-item has-text-danger">
+                                Déconnexion
+                              </a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                    <h2>Nom d'utilisateur</h2>
+                     <input #usernameInput class="input has-background-white is-medium" type="text" value="{{Selecteduser.username}}" >
+                    <br><br>
+                    <h2>Mot de passe</h2>
+                    <input #passwordInput class="input has-background-white is-medium" type="text" placeholder="Entrer nouveau mot de passe" value="{{Selecteduser.password}}">
+                    <br><br>
+                    <div class="buttons is-right">
+                        <button class="add-button button is-primary" (click)="onSaveClick(usernameInput.value,passwordInput.value)">
+                            sauvegarder
+                        </button>
+                    </div>
+            </div>
+
+            <div *ngIf="!Selecteduser">
+                <div class="top-bar">
+                    <h3 class="empty-state-text">Veuillez sélectionner un responsable</h3>
+
+                        <div class="dropdown-trigger">
+                          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4" (click)="onlogoutClick()">
+                            <span class="icon is-small">
+                              <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </div> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
