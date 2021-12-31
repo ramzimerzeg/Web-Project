@@ -20,13 +20,13 @@ const rateLimit = require('express-rate-limit');
 
 const AddTasklimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 10, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+	max: 3, // limite chaque IP a 3 requete par 15 minutes
     message: "Trop de demandes, veuillez réessayer plus tard... :)"
 })
 
 
 /**
- * GET /ressources/:ressourceId/tasks
+ * GET /resso   urces/:ressourceId/tasks
  * role : get all tasks that belong to a spesific ressource
  */
  router.get('/ressources/:ressourceId/tasks',authenticate, (req,res)=>{
@@ -50,7 +50,7 @@ router.get('/ressources/:ressourceId/tasks/:taskId',authenticate,(req,res)=>{
 
 /**
  * POST /ressources/:ressourceId/tasks
- * role : create a new task in a list 
+ * role : creation d'une nouvelle anomalie d'une ressource
  */
  router.post('/ressources/:ressourceId/tasks',AddTasklimiter, (req, res) => {
     Ressource.findOne({

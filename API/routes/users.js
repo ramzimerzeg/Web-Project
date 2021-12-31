@@ -82,13 +82,9 @@ const verifySession = require('../middleware/verifySession');
 
     let{username, password} = req.body;
 
-    console.log("req.body before hash");
-    console.log(username);
-    console.log(password);
     if (password == "") {
         let userdata;
          userdata = {username}
-         console.log("user data",userdata);
         User.findOneAndUpdate({_id: req.params.id},{
             $set: userdata
         }).then(()=>{
@@ -98,14 +94,12 @@ const verifySession = require('../middleware/verifySession');
         let costFactor = 10;
         bcrypt.genSalt(costFactor, (err, salt) =>  {
             bcrypt.hash(password, salt, (err, hash) => {
-                console.log("hash is "+hash);
                 let userdata;
                 if(password == undefined){
                     userdata = {username}
                 } else {
                     userdata = {username,password:hash}
                 }
-                console.log("user data",userdata);
                 User.findOneAndUpdate({_id: req.params.id},{
                     $set: userdata
                 }).then(()=>{
